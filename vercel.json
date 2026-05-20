@@ -1,0 +1,6 @@
+{
+  "rootDirectory": "ann-planner",
+  "buildCommand": "npm run build",
+  "outputDirectory": "ann-planner/dist",
+  "framework": "vite"
+}

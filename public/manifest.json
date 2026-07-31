@@ -1,8 +1,8 @@
 {
-  "name": "Ann's Planner",
-  "short_name": "Planner",
+  "name": "Sprout — Personal Finance Coach",
+  "short_name": "Sprout",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F5F0E8",
-  "theme_color": "#7A9E7E"
+  "background_color": "#F6F5F1",
+  "theme_color": "#478A50"
 }

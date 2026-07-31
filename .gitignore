@@ -22,4 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-ann-planner/
+
+# Test artifacts
+test-results/
+playwright-report/
+blob-report/
+*.tsbuildinfo

@@ -1,8 +1,15 @@
 {
-  "name": "Ann's Planner",
-  "short_name": "Planner",
+  "name": "보성녹돈",
+  "short_name": "보성녹돈",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F5F0E8",
-  "theme_color": "#7A9E7E"
+  "background_color": "#faf6ee",
+  "theme_color": "#1f1c1a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
 }

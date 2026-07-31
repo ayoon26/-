@@ -1,21 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Ann's Planner</title>
+    <title>보성녹돈 | 울산 무거동 한우·돼지갈비 식육식당</title>
+    <meta name="description" content="울산 무거동 보성녹돈 본관·신관. 한우와 한돈을 직접 고르고 즐기는 식육식당으로 가족 외식, 회식, 단체모임, 예약 및 주차가 가능합니다." />
+    <meta name="keywords" content="울산 무거동 고깃집,무거동 맛집,울산대 맛집,무거동 한우,무거동 돼지갈비,울산 식육식당,울산 가족 외식,울산 회식,울산 단체모임,보성녹돈,보성녹돈 본관,보성녹돈 신관,보성녹돈 명품한우" />
+    <meta name="theme-color" content="#1f1c1a" />
+    <!-- TODO: replace with the final production domain once assigned -->
+    <link rel="canonical" href="https://www.boseongnokdon.kr/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="보성녹돈" />
+    <meta property="og:title" content="보성녹돈 | 울산 무거동 한우·돼지갈비 식육식당" />
+    <meta property="og:description" content="한우와 한돈을 직접 보고 고르는 식육식당. 본관과 신관에서 가족 외식부터 단체모임까지 편안하게 즐겨보세요." />
+    <meta property="og:image" content="/images/hero/hero-main.jpg" />
+    <meta property="og:locale" content="ko_KR" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#7A9E7E" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Ann's Planner" />
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-      body { background: #F5F0E8; overscroll-behavior: none; }
-    </style>
+
+    <!-- Korean web font: Pretendard (dynamic subset keeps payload small); system Korean fonts are the fallback -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link
+      rel="stylesheet"
+      as="style"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"
+    />
+
+    <!-- Restaurant structured data (JSON-LD) is injected at runtime from src/data/content.ts
+         via <StructuredData />, so addresses/phones/hours stay in sync with the single source of truth. -->
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

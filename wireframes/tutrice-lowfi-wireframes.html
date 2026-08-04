@@ -1,0 +1,1205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Squirreled Away (Tutrice) — Low-Fidelity Wireframes</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { background:#dcdcdc; font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; color:#111; }
+
+  .page { max-width:2500px; margin:0 auto; padding:48px 56px 120px; }
+  .page-title { font-size:26px; font-weight:800; }
+  .page-sub { font-size:14px; color:#444; margin-top:8px; max-width:900px; line-height:1.5; }
+
+  .legend { margin-top:24px; padding:16px 20px; background:#fff; border:1px solid #bbb; border-radius:8px; display:flex; gap:28px; flex-wrap:wrap; font-size:12px; color:#333; }
+  .legend b { display:block; font-size:12px; margin-bottom:2px; }
+
+  .row { margin-top:64px; }
+  .row-label { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:#222; margin-bottom:20px; border-bottom:2px solid #000; padding-bottom:8px; }
+  .row-frames { display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap; }
+
+  .frame-wrap { width:390px; display:flex; flex-direction:column; gap:12px; }
+  .frame-title { font-size:13px; font-weight:800; }
+  .frame-title span { font-weight:500; color:#555; }
+
+  .frame { width:390px; height:844px; background:#fff; border:2px solid #000; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; position:relative; box-shadow:0 2px 0 rgba(0,0,0,.05); }
+
+  .statusbar { flex-shrink:0; height:26px; display:flex; align-items:center; justify-content:space-between; padding:0 20px; font-size:11px; font-weight:600; }
+  .statusbar .dots { display:flex; gap:4px; }
+  .statusbar .dot { width:7px; height:7px; border-radius:50%; border:1.3px solid #000; }
+  .statusbar .dot.filled { background:#000; }
+
+  .top-header { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:6px 20px 10px; gap:10px; }
+  .top-header .title { font-size:16px; font-weight:800; }
+  .icon-btn { width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700; flex-shrink:0; }
+  .avatar { width:30px; height:30px; border-radius:50%; border:2px solid #000; flex-shrink:0; }
+
+  .progress-wrap { flex-shrink:0; padding:10px 20px 4px; }
+  .progress-top-row { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .progress-label { font-size:11.5px; font-weight:700; color:#444; }
+  .progress-track { height:4px; background:#e2e2e2; border-radius:2px; overflow:hidden; }
+  .progress-fill { height:100%; background:#000; }
+
+  .content { flex:1; overflow-y:auto; padding:6px 20px 16px; }
+  .content.center { display:flex; flex-direction:column; align-items:center; text-align:center; }
+
+  .headline { font-size:20px; font-weight:800; line-height:1.28; margin:10px 0 8px; }
+  .supporting { font-size:13px; color:#3f3f3f; line-height:1.5; margin-bottom:16px; }
+  .section-label { font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:#555; margin:18px 0 8px; }
+  .section-label:first-child { margin-top:0; }
+
+  .wordmark { font-size:15px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin:18px 0 14px; }
+
+  .illustration-placeholder { width:100%; border:1.5px dashed #999; border-radius:12px; padding:22px 10px; display:flex; flex-direction:column; align-items:center; gap:8px; color:#777; font-size:11px; margin-bottom:14px; }
+
+  .acorn { width:34px; height:34px; position:relative; flex-shrink:0; }
+  .acorn .cap { position:absolute; top:0; left:1px; width:32px; height:15px; background:#555; border:2px solid #000; border-radius:50% 50% 2px 2px; }
+  .acorn .body { position:absolute; top:11px; left:6px; width:22px; height:21px; background:#fff; border:2px solid #000; border-radius:0 0 11px 11px; }
+  .acorn.lg { width:56px; height:56px; }
+  .acorn.lg .cap { width:52px; height:24px; left:2px; }
+  .acorn.lg .body { width:36px; height:34px; top:18px; left:10px; border-radius:0 0 18px 18px; }
+  .icon-circle { width:34px; height:34px; border-radius:50%; border:2px solid #999; background:#f2f2f2; flex-shrink:0; }
+
+  .info-box { width:100%; background:#efefef; border-radius:10px; padding:12px 14px; font-size:12px; color:#333; line-height:1.5; }
+
+  .step-row { display:flex; align-items:center; gap:10px; font-size:13px; margin-bottom:8px; text-align:left; width:100%; }
+  .step-num { width:20px; height:20px; border-radius:50%; border:2px solid #000; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+  .card { border:1.5px solid #000; border-radius:10px; padding:13px 14px; margin-bottom:12px; background:#fff; }
+  .card.muted { border-color:#bbb; color:#777; }
+  .card.dark { background:#111; border-color:#111; color:#fff; }
+  .card.dark .card-label { color:#ccc; }
+  .card-label { font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:#666; margin-bottom:5px; }
+  .card-text { font-size:13.5px; line-height:1.45; }
+  .card-title-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .card-title-row .name { font-size:14.5px; font-weight:800; }
+  .card-title-row .meta { font-size:11.5px; color:#666; }
+  .source-row { font-size:11px; color:#777; margin-top:6px; }
+
+  .row-actions { display:flex; gap:14px; margin-top:10px; }
+  .link-action { font-size:12.5px; font-weight:700; text-decoration:underline; }
+  .link-action.muted { color:#888; }
+
+  .badge { display:inline-block; font-size:9.5px; font-weight:800; padding:3px 8px; border-radius:20px; background:#000; color:#fff; letter-spacing:.02em; }
+  .badge.outline { background:#fff; color:#000; border:1.3px solid #000; }
+  .badge.gray { background:#888; color:#fff; }
+
+  .list-plain { font-size:13px; line-height:1.6; padding-left:16px; margin-bottom:4px; }
+  .list-plain li { margin-bottom:2px; }
+
+  .checkbox { width:22px; height:22px; border:2px solid #000; border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; flex-shrink:0; }
+  .checkbox.checked { background:#000; color:#fff; }
+  .checkbox.unchecked { color:transparent; border-color:#999; }
+
+  .detect-card { display:flex; gap:12px; border:1.5px solid #000; border-radius:10px; padding:12px 14px; margin-bottom:12px; align-items:flex-start; }
+  .detect-card.dim { border-color:#bbb; }
+  .detect-card .grow { flex:1; }
+  .detect-row-top { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+
+  .radio-row { display:flex; align-items:flex-start; gap:10px; font-size:12.5px; margin-bottom:10px; line-height:1.4; }
+  .radio { width:18px; height:18px; border-radius:50%; border:2px solid #000; flex-shrink:0; margin-top:1px; }
+  .radio.selected { background:#000; box-shadow:inset 0 0 0 3px #fff; }
+
+  .divider { height:1px; background:#e4e4e4; margin:14px 0; }
+
+  .sticky-bottom { flex-shrink:0; padding:12px 20px 22px; border-top:1px solid #e6e6e6; display:flex; flex-direction:column; gap:8px; }
+  .btn-primary { background:#000; color:#fff; height:50px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:14.5px; font-weight:800; text-align:center; padding:0 10px; }
+  .btn-primary.compact { height:42px; }
+  .btn-outline { border:1.8px solid #000; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:13.5px; font-weight:800; }
+  .btn-secondary { text-align:center; font-size:13px; font-weight:700; text-decoration:underline; padding:2px; color:#111; }
+  .btn-row { display:flex; gap:10px; }
+  .btn-row .btn-primary, .btn-row .btn-outline { flex:1; }
+
+  .bottom-nav { flex-shrink:0; height:66px; border-top:1.5px solid #000; display:flex; }
+  .nav-item { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; font-size:10.5px; font-weight:600; color:#555; }
+  .nav-item .nav-icon { width:20px; height:20px; border-radius:50%; border:1.8px solid #999; }
+  .nav-item.active { color:#000; font-weight:800; }
+  .nav-item.active .nav-icon { border-color:#000; background:#000; }
+
+  .banner { background:#111; color:#fff; font-size:12px; font-weight:700; text-align:center; padding:9px 16px; }
+
+  .timer-big { font-size:44px; font-weight:800; letter-spacing:.02em; margin:18px 0 10px; }
+  .waveform { display:flex; align-items:flex-end; gap:4px; height:40px; margin-bottom:14px; }
+  .waveform .bar { width:5px; background:#000; border-radius:2px; }
+
+  .sheet-frame { position:absolute; left:0; right:0; bottom:0; background:#fff; border-top:2px solid #000; border-radius:20px 20px 0 0; box-shadow:0 -4px 16px rgba(0,0,0,.12); padding:14px 20px 24px; }
+  .sheet-handle { width:38px; height:4px; background:#ccc; border-radius:3px; margin:0 auto 14px; }
+  .sheet-backdrop { position:absolute; inset:0; background:rgba(0,0,0,.28); }
+  .sheet-title { font-size:16px; font-weight:800; margin-bottom:4px; }
+  .option-row { display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #eee; font-size:13.5px; font-weight:600; }
+  .option-row:last-of-type { border-bottom:none; }
+  .option-row .icon-circle { width:30px; height:30px; }
+  .option-row.highlight { background:#f2f2f2; border-radius:8px; padding:11px 10px; border-bottom:none; font-weight:800; }
+
+  textarea.fake { width:100%; border:1.5px solid #000; border-radius:10px; padding:12px; font-size:13px; line-height:1.5; height:150px; color:#111; font-family:inherit; resize:none; }
+  input.fake-field { width:100%; border:1.5px solid #999; border-radius:8px; padding:10px 12px; font-size:13px; }
+
+  .annotation { width:390px; font-size:12px; color:#333; line-height:1.55; border-top:2px dashed #999; padding-top:10px; }
+  .annotation b { color:#000; }
+  .annotation .arow { margin-bottom:4px; }
+  .annotation .tag { display:inline-block; font-size:10px; font-weight:800; background:#000; color:#fff; padding:2px 7px; border-radius:10px; margin-right:6px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="page-title">Squirreled Away (Tutrice) — Low-Fidelity Mobile Wireframes</div>
+  <div class="page-sub">21 screens, one continuous happy-path story: onboarding via Google Calendar → confirming detected students → reviewing Sarah Kim's AI-built Student Memory → Today → preparing for and recording a lesson → automatic memory update → manually adding a parent message → confirmed memory update. Grayscale, 390×844 mobile frames, arranged in 4 rows in story order. Annotations sit below each frame.</div>
+
+  <div class="legend">
+    <div><b>Acorn placeholder</b>beside every student name (grayscale, uncolored). Sarah's is labeled "Sarah's acorn."</div>
+    <div><b>Badges</b>solid = status/confidence (e.g. "New," "High confidence"); outline = neutral tag.</div>
+    <div><b>Source labels</b>small gray text under AI-derived content: Google Calendar · Parent message · Lesson note · Lesson recording.</div>
+    <div><b>Checkboxes</b>filled = selected for saving; empty = detected but not yet accepted.</div>
+    <div><b>Sticky bottom bar</b>primary button always full-width black; secondary action is text-only beneath it.</div>
+  </div>
+
+  <!-- ============================================================ ROW 1 ============================================================ -->
+  <div class="row">
+    <div class="row-label">Row 1 — Onboarding: Connect Calendar (Screens 01–06)</div>
+    <div class="row-frames">
+
+      <!-- SCREEN 01 -->
+      <div class="frame-wrap">
+        <div class="frame-title">01 <span>· Welcome</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="content center">
+            <div class="wordmark">Squirreled Away</div>
+            <div class="illustration-placeholder">
+              <div class="acorn lg"><div class="cap"></div><div class="body"></div></div>
+              Basket &amp; acorn illustration — placeholder
+            </div>
+            <div class="headline">Bring in what you already know about your students.</div>
+            <div class="supporting">Connect the tools you already use. We'll organize lesson schedules, notes, and important student context for you.</div>
+            <div style="width:100%;text-align:left;margin-bottom:16px;">
+              <div class="step-row"><div class="step-num">1</div>Connect what you use</div>
+              <div class="step-row"><div class="step-num">2</div>Review what we find</div>
+              <div class="step-row"><div class="step-num">3</div>Start with organized student memories</div>
+            </div>
+            <div class="info-box">Nothing is added to a student memory until you review it.</div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Get started</div>
+            <div class="btn-secondary">Start manually</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Introduce the value without asking the tutor to configure a profile.</div>
+          <div class="arow"><b>Primary action:</b> "Get started" <span class="tag">→ 02</span></div>
+          <div class="arow"><b>Secondary:</b> "Start manually" (not built in this prototype).</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 02 -->
+      <div class="frame-wrap">
+        <div class="frame-title">02 <span>· Connect Existing Tools</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="progress-wrap">
+            <div class="progress-top-row"><div class="icon-btn">←</div><div class="progress-label">Step 1 of 3</div></div>
+            <div class="progress-track"><div class="progress-fill" style="width:33%;"></div></div>
+          </div>
+          <div class="content">
+            <div class="headline">Where do you manage your tutoring?</div>
+            <div class="supporting">Start with your calendar. It helps us identify your students and lesson schedules.</div>
+
+            <div class="section-label">Schedule</div>
+            <div class="card" style="display:flex;align-items:center;justify-content:space-between;">
+              <div><div class="card-text" style="font-weight:700;">Google Calendar</div><div class="source-row">Recommended</div></div>
+              <div class="checkbox checked">✓</div>
+            </div>
+            <div class="card muted" style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="card-text">Apple Calendar</div><span class="badge gray">Later</span>
+            </div>
+            <div class="card muted" style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="card-text">Outlook Calendar</div><span class="badge gray">Later</span>
+            </div>
+            <div class="info-box" style="margin:8px 0 4px;">We'll look for recurring lesson events, student names, lesson times, and event notes.</div>
+
+            <div class="section-label">Notes and files</div>
+            <div class="card muted" style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="card-text">Notion</div><span class="badge gray">Later</span>
+            </div>
+            <div class="card muted" style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="card-text">Google Drive</div><span class="badge gray">Later</span>
+            </div>
+
+            <div class="section-label">Messages</div>
+            <div class="card muted" style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="card-text">Messages or screenshots</div><span class="badge outline">Share from your phone</span>
+            </div>
+            <div class="card muted" style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="card-text">WeChat</div><span class="badge gray">Manual share</span>
+            </div>
+            <div class="card muted" style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="card-text">iMessage</div><span class="badge gray">Manual share</span>
+            </div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Continue with Google Calendar</div>
+            <div class="btn-secondary">Skip for now</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Pick existing sources without an overwhelming integrations marketplace.</div>
+          <div class="arow"><b>Primary action:</b> "Continue with Google Calendar" <span class="tag">→ 03</span></div>
+          <div class="arow">Google Calendar is pre-selected and the only required connection. All other rows are non-interactive "Later" placeholders.</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 03 -->
+      <div class="frame-wrap">
+        <div class="frame-title">03 <span>· Google Calendar Permission</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="progress-wrap">
+            <div class="progress-top-row"><div class="icon-btn">←</div><div class="progress-label">Step 1 of 3</div></div>
+            <div class="progress-track"><div class="progress-fill" style="width:33%;"></div></div>
+          </div>
+          <div class="content center">
+            <div class="top-header" style="padding:0;"><div class="title">Connect Google Calendar</div></div>
+            <div class="icon-circle" style="width:52px;height:52px;margin:14px 0;"></div>
+            <div class="headline">Find your students from your lesson schedule.</div>
+
+            <div style="width:100%;">
+              <div class="section-label">Squirreled Away will read</div>
+              <ul class="list-plain" style="width:100%;text-align:left;">
+                <li>Lesson titles</li>
+                <li>Dates and recurring schedules</li>
+                <li>Event descriptions</li>
+                <li>Names associated with lesson events</li>
+              </ul>
+              <div class="section-label">Squirreled Away will not</div>
+              <ul class="list-plain" style="width:100%;text-align:left;">
+                <li>Change calendar events</li>
+                <li>Message anyone</li>
+                <li>Add personal events as students without confirmation</li>
+              </ul>
+            </div>
+            <div class="info-box" style="margin-top:12px;">You'll review every suggested student before anything is added.</div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary"><span style="border:1.5px solid #fff;border-radius:50%;width:16px;height:16px;display:inline-block;margin-right:8px;"></span>Allow calendar access</div>
+            <div class="btn-secondary">Not now</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Explain access clearly before simulated authorization.</div>
+          <div class="arow"><b>Primary action:</b> "Allow calendar access" <span class="tag">→ 04</span></div>
+          <div class="arow">Small circle beside the button label is a Google icon placeholder.</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 04 -->
+      <div class="frame-wrap">
+        <div class="frame-title">04 <span>· Scanning Calendar</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="progress-wrap">
+            <div class="progress-top-row"><div class="progress-label">Step 2 of 3</div></div>
+            <div class="progress-track"><div class="progress-fill" style="width:66%;"></div></div>
+          </div>
+          <div class="content center" style="justify-content:center;flex:1;">
+            <div class="icon-circle" style="width:48px;height:48px;border-style:dashed;margin-bottom:18px;"></div>
+            <div class="headline">Finding your students…</div>
+            <div class="supporting">Reviewing recurring lesson events</div>
+            <div style="width:100%;text-align:left;">
+              <div class="step-row"><div class="step-num">✓</div>Reading lesson events — <b>complete</b></div>
+              <div class="step-row"><div class="step-num" style="background:#000;color:#fff;">●</div>Identifying possible students — <b>active</b></div>
+              <div class="step-row" style="color:#999;"><div class="step-num" style="border-color:#ccc;"> </div>Organizing student schedules — waiting</div>
+            </div>
+          </div>
+          <div class="sticky-bottom" style="border-top:none;">
+            <div class="supporting" style="text-align:center;margin:0;">This should only take a moment.</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Short transitional system state, no user input.</div>
+          <div class="arow"><b>Automatic transition:</b> after a brief delay <span class="tag">→ 05</span> (no button).</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 05 -->
+      <div class="frame-wrap">
+        <div class="frame-title">05 <span>· Detected Students</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="progress-wrap">
+            <div class="progress-top-row"><div class="progress-label">Step 2 of 3</div></div>
+            <div class="progress-track"><div class="progress-fill" style="width:66%;"></div></div>
+          </div>
+          <div class="content">
+            <div class="headline">We found 3 possible students.</div>
+            <div class="supporting">Confirm the people you tutor. You can correct this list before student memories are created.</div>
+
+            <div class="detect-card">
+              <div class="checkbox checked">✓</div>
+              <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+              <div class="grow">
+                <div class="detect-row-top">
+                  <div class="card-text" style="font-weight:800;">Sarah Kim</div>
+                  <span class="badge">High confidence</span>
+                </div>
+                <div class="card-text">Algebra · Tuesdays and Thursdays at 4:00 PM</div>
+                <div class="source-row">12 recurring lesson events</div>
+              </div>
+              <div class="link-action muted" style="font-size:11px;">Edit</div>
+            </div>
+
+            <div class="detect-card">
+              <div class="checkbox checked">✓</div>
+              <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+              <div class="grow">
+                <div class="detect-row-top"><div class="card-text" style="font-weight:800;">Daniel Lee</div></div>
+                <div class="card-text">Geometry · Wednesdays at 5:30 PM</div>
+                <div class="source-row">6 recurring lesson events</div>
+              </div>
+              <div class="link-action muted" style="font-size:11px;">Edit</div>
+            </div>
+
+            <div class="detect-card dim">
+              <div class="checkbox unchecked">✓</div>
+              <div class="icon-circle"></div>
+              <div class="grow">
+                <div class="detect-row-top"><div class="card-text" style="font-weight:800;color:#888;">Dentist</div></div>
+                <div class="card-text" style="color:#999;">One appointment</div>
+                <div class="source-row">Probably not a student</div>
+              </div>
+              <div class="link-action muted" style="font-size:11px;">Edit</div>
+            </div>
+
+            <div class="link-action" style="display:block;text-align:center;margin-top:6px;">Select all students</div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Add 2 students</div>
+            <div class="btn-secondary">I'm missing someone</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Confirm system suggestions rather than manually create student profiles.</div>
+          <div class="arow"><b>Primary action:</b> "Add 2 students" <span class="tag">→ 06</span></div>
+          <div class="arow">Sarah and Daniel are pre-checked; "Dentist" is detected but unchecked and visually dimmed.</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 06 -->
+      <div class="frame-wrap">
+        <div class="frame-title">06 <span>· Student Memories Created</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="progress-wrap">
+            <div class="progress-top-row"><div class="progress-label">Step 3 of 3</div></div>
+            <div class="progress-track"><div class="progress-fill" style="width:100%;"></div></div>
+          </div>
+          <div class="content">
+            <div class="headline">Your student list is ready.</div>
+            <div class="supporting">We created an initial memory for each confirmed student using their lesson schedules and available notes.</div>
+
+            <div class="card" style="display:flex;justify-content:space-around;text-align:center;">
+              <div><div style="font-size:20px;font-weight:800;">2</div><div class="source-row">students added</div></div>
+              <div><div style="font-size:20px;font-weight:800;">18</div><div class="source-row">lesson events organized</div></div>
+              <div><div style="font-size:20px;font-weight:800;">1</div><div class="source-row">needs review</div></div>
+            </div>
+
+            <div class="section-label">Confirmed students</div>
+            <div class="card">
+              <div class="card-title-row">
+                <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+                <div><div class="name">Sarah Kim</div></div>
+                <span class="badge" style="margin-left:auto;">Ready to review</span>
+              </div>
+              <div class="card-text">We found learning context from calendar notes and one imported lesson note.</div>
+            </div>
+            <div class="card muted">
+              <div class="card-title-row">
+                <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+                <div><div class="name" style="color:#888;">Daniel Lee</div></div>
+                <span class="badge outline" style="margin-left:auto;">Review later</span>
+              </div>
+              <div class="card-text">Calendar details only</div>
+            </div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Review Sarah's memory</div>
+            <div class="btn-secondary">Go to Today</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Show immediate value right after the calendar import.</div>
+          <div class="arow"><b>Primary action:</b> "Review Sarah's memory" <span class="tag">→ 07</span></div>
+          <div class="arow">Daniel is shown muted/secondary since he only has calendar data so far.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ ROW 2 ============================================================ -->
+  <div class="row">
+    <div class="row-label">Row 2 — Memory Review &amp; Lesson Preparation (Screens 07–11)</div>
+    <div class="row-frames">
+
+      <!-- SCREEN 07 -->
+      <div class="frame-wrap">
+        <div class="frame-title">07 <span>· Onboarding Student Memory Review</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="top-header">
+            <div class="icon-btn">←</div>
+            <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+            <div style="flex:1;"><div class="title">Sarah Kim</div><div class="source-row">Google Calendar · Lesson note</div></div>
+          </div>
+          <div class="progress-wrap" style="padding-top:0;"><div class="progress-label">Sarah · Review 1 of 1</div></div>
+          <div class="content">
+            <div class="headline">Here's what we understood about Sarah.</div>
+            <div class="supporting">Confirm what looks right. Correct or remove anything we misunderstood.</div>
+
+            <div class="card">
+              <div class="card-label">Learning goal</div>
+              <div class="card-text">Build confidence before the October algebra exam.</div>
+              <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Remove</div></div>
+            </div>
+
+            <div class="card">
+              <div class="detect-row-top"><div class="card-label">Learning preference</div><span class="badge outline">Needs confirmation</span></div>
+              <div class="card-text">Understands new concepts better through diagrams and worked examples.</div>
+              <div class="source-row">Inferred from the note: "Diagrams worked much better today."</div>
+              <div class="row-actions"><div class="link-action">Yes, remember this</div><div class="link-action muted">Not sure</div><div class="link-action muted">Remove</div></div>
+            </div>
+
+            <div class="card">
+              <div class="card-label">Current challenge</div>
+              <div class="card-text">Rushes through multi-step problems.</div>
+              <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Remove</div></div>
+            </div>
+
+            <div class="card">
+              <div class="card-label">Parent request</div>
+              <div class="card-text">Send a short progress update after each lesson.</div>
+              <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Remove</div></div>
+            </div>
+
+            <div class="card">
+              <div class="card-label">Lesson schedule</div>
+              <div class="card-text">Tuesdays and Thursdays at 4:00 PM</div>
+              <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Remove</div></div>
+            </div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Everything looks right</div>
+            <div class="btn-secondary">Review later</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Verify AI-generated memory before onboarding ends. Only populated cards shown — no empty fields.</div>
+          <div class="arow"><b>Primary action:</b> "Everything looks right" <span class="tag">→ 08</span></div>
+          <div class="arow">"Learning preference" carries a "Needs confirmation" badge with evidence disclosure and a 3-way inline choice.</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 08 -->
+      <div class="frame-wrap">
+        <div class="frame-title">08 <span>· Onboarding Complete</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="content center" style="justify-content:center;flex:1;">
+            <div class="icon-circle" style="width:60px;height:60px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;border-color:#000;margin-bottom:16px;">✓</div>
+            <div class="headline">Sarah's memory is ready.</div>
+            <div class="supporting">We'll bring forward the most useful context before her lessons and update her memory as you teach.</div>
+            <div class="card" style="width:100%;">
+              <div class="card-text">✓ 5 details confirmed</div>
+              <div class="card-text">✓ 2 sources connected</div>
+              <div class="card-text">✓ Lesson schedule organized</div>
+            </div>
+            <div class="info-box">You can change or remove any memory later.</div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Go to Today</div>
+            <div class="btn-secondary">Review another student</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Clear end of onboarding; sets expectation for ongoing memory updates.</div>
+          <div class="arow"><b>Primary action:</b> "Go to Today" <span class="tag">→ 09</span></div>
+        </div>
+      </div>
+
+      <!-- SCREEN 09 -->
+      <div class="frame-wrap">
+        <div class="frame-title">09 <span>· Today</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="top-header">
+            <div><div class="title">Good afternoon, Mina</div><div class="source-row">You have 3 lessons today.</div></div>
+            <div class="avatar"></div>
+          </div>
+          <div class="content">
+            <div class="section-label">Next lesson</div>
+            <div class="card" style="border-width:2px;">
+              <div class="card-title-row">
+                <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+                <div><div class="name">Sarah Kim</div><div class="meta">Algebra</div></div>
+                <span class="badge" style="margin-left:auto;">Next</span>
+              </div>
+              <div class="card-text" style="font-weight:700;margin-bottom:8px;">4:00 PM · In 45 minutes</div>
+              <div class="divider" style="margin:8px 0;"></div>
+              <div class="card-text">Today's focus: Multi-step word problems</div>
+              <div class="card-text">Last lesson: Factoring quadratic expressions</div>
+              <div class="card-text">Remember: Ask Sarah to explain each step aloud</div>
+              <div class="card-text">Parent request: Send a short update after class</div>
+              <div class="btn-primary compact" style="margin-top:12px;">Prepare for Sarah</div>
+            </div>
+
+            <div class="section-label">Later today</div>
+            <div class="card muted" style="display:flex;align-items:center;gap:10px;">
+              <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+              <div class="card-text">Daniel Lee · Geometry · 5:30 PM</div>
+            </div>
+            <div class="card muted" style="display:flex;align-items:center;gap:10px;">
+              <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+              <div class="card-text">Emma Park · Precalculus · 7:00 PM</div>
+            </div>
+
+            <div class="section-label">Recent update</div>
+            <div class="card">
+              <div class="card-text">Sarah's homework note was added yesterday.</div>
+              <div class="source-row">Yesterday · Lesson note</div>
+            </div>
+          </div>
+          <div class="bottom-nav">
+            <div class="nav-item active"><div class="nav-icon"></div>Today</div>
+            <div class="nav-item"><div class="nav-icon"></div>Students</div>
+            <div class="nav-item"><div class="nav-icon"></div>Add</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Immediately show what needs attention today.</div>
+          <div class="arow"><b>Primary action:</b> "Prepare for Sarah" <span class="tag">→ 10</span></div>
+          <div class="arow">Bottom nav "Add" opens a capture menu (bottom sheet), not a separate tab — see Screen 17.</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 10 -->
+      <div class="frame-wrap">
+        <div class="frame-title">10 <span>· Prepare for Sarah</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="top-header">
+            <div class="icon-btn">←</div>
+            <div class="title">Prepare for Sarah</div>
+            <div class="icon-btn">⋯</div>
+          </div>
+          <div class="content">
+            <div class="card-title-row">
+              <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+              <div><div class="name">Sarah Kim</div><div class="meta">Algebra · Today · 4:00–5:00 PM</div></div>
+            </div>
+            <div class="card dark" style="text-align:center;">
+              <div class="card-text" style="font-size:15px;font-weight:800;">Lesson starts in 45 minutes</div>
+            </div>
+
+            <div class="section-label">What to remember today</div>
+            <div class="card" style="border-width:2px;">
+              <div class="card-text">Sarah understands new concepts best through diagrams. Slow down during multi-step problems and ask her to explain each step aloud.</div>
+            </div>
+
+            <div class="section-label">Suggested lesson focus</div>
+            <ul class="list-plain">
+              <li>Review homework problems 4–8</li>
+              <li>Practice translating word problems into equations</li>
+              <li>Use one worked visual example before independent practice</li>
+            </ul>
+
+            <div class="section-label">Since your last lesson</div>
+            <ul class="list-plain">
+              <li>No new parent messages</li>
+              <li>Homework note added yesterday</li>
+              <li>Exam currently recorded as October 15</li>
+            </ul>
+
+            <div class="section-label">After the lesson</div>
+            <ul class="list-plain">
+              <li>Parent requested a short progress update</li>
+            </ul>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Start lesson</div>
+            <div class="btn-outline">Open full student memory</div>
+            <div class="link-action" style="text-align:center;">Edit today's focus</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Turn accumulated memory into a short, actionable pre-lesson briefing.</div>
+          <div class="arow"><b>Primary action:</b> "Start lesson" <span class="tag">→ 12</span></div>
+          <div class="arow"><b>Secondary action:</b> "Open full student memory" <span class="tag">→ 11</span></div>
+        </div>
+      </div>
+
+      <!-- SCREEN 11 -->
+      <div class="frame-wrap">
+        <div class="frame-title">11 <span>· Sarah's Full Student Memory</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="top-header">
+            <div class="icon-btn">←</div>
+            <div class="title">Student Memory</div>
+            <div class="icon-btn">⋯</div>
+          </div>
+          <div class="content">
+            <div class="card-title-row">
+              <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+              <div><div class="name">Sarah Kim</div><div class="meta">Algebra · Tuesdays and Thursdays · 4:00 PM</div></div>
+            </div>
+            <div class="source-row" style="margin-bottom:10px;">Next lesson: Today</div>
+            <div class="btn-row" style="margin-bottom:14px;">
+              <div class="btn-primary compact">Prepare</div>
+              <div class="btn-outline" style="flex:0 0 46px;">+</div>
+            </div>
+
+            <div class="card" style="border-width:2px;">
+              <div class="card-label">What to remember today</div>
+              <div class="card-text">Use diagrams for new material. Pause during multi-step problems and ask Sarah to explain her reasoning aloud.</div>
+              <div class="link-action" style="margin-top:6px;display:inline-block;">Why am I seeing this?</div>
+            </div>
+
+            <div class="section-label">1. Current learning</div>
+            <div class="card">
+              <ul class="list-plain">
+                <li>Goal: Build confidence before the October exam</li>
+                <li>Current focus: Multi-step word problems</li>
+                <li>Previous topic: Factoring quadratic expressions</li>
+                <li>Exam date: October 15</li>
+                <li>Homework: Problems 4–8</li>
+              </ul>
+            </div>
+
+            <div class="section-label">2. How Sarah learns</div>
+            <div class="card">
+              <ul class="list-plain">
+                <li>Responds well to diagrams and worked examples</li>
+                <li>Understands visual patterns quickly</li>
+                <li>Rushes when problems contain several steps</li>
+                <li>Becomes hesitant with unfamiliar wording</li>
+              </ul>
+            </div>
+
+            <div class="section-label">3. Parent context</div>
+            <div class="card">
+              <ul class="list-plain">
+                <li>Send a short progress update after every lesson</li>
+                <li>Prioritize confidence as well as accuracy</li>
+              </ul>
+            </div>
+
+            <div class="section-label">4. Recent lesson memory</div>
+            <div class="card">
+              <div class="card-text" style="font-weight:700;">July 31 · Factoring quadratic expressions</div>
+              <ul class="list-plain">
+                <li>Understood the visual factoring model</li>
+                <li>Needed prompts to check signs</li>
+                <li>Homework assigned: Problems 4–8</li>
+              </ul>
+            </div>
+            <div class="card muted">
+              <div class="card-text">July 29 · Reviewing linear equations</div>
+            </div>
+
+            <div class="section-label">5. Sources</div>
+            <div class="card" style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="badge outline">Google Calendar</span><span class="badge outline">Parent message</span><span class="badge outline">Lesson note</span>
+            </div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Add information</div>
+          </div>
+          <div class="bottom-nav">
+            <div class="nav-item"><div class="nav-icon"></div>Today</div>
+            <div class="nav-item active"><div class="nav-icon"></div>Students</div>
+            <div class="nav-item"><div class="nav-icon"></div>Add</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> The core product experience — a living, organized summary, not a database.</div>
+          <div class="arow"><b>Primary action:</b> "Prepare" <span class="tag">→ 10</span> · sticky "Add information" <span class="tag">→ 17</span></div>
+          <div class="arow">Sections are expandable cards; this revisits with updated content after Screens 16 and 20.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ ROW 3 ============================================================ -->
+  <div class="row">
+    <div class="row-label">Row 3 — Lesson Recording &amp; Automatic Update (Screens 12–16)</div>
+    <div class="row-frames">
+
+      <!-- SCREEN 12 -->
+      <div class="frame-wrap">
+        <div class="frame-title">12 <span>· Start Lesson / Recording Consent</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="top-header">
+            <div class="icon-btn">✕</div>
+            <div class="title">Record lesson</div>
+            <div style="width:26px;"></div>
+          </div>
+          <div class="content">
+            <div class="card-title-row">
+              <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+              <div><div class="name">Sarah Kim</div><div class="meta">Algebra · Today at 4:00 PM</div></div>
+            </div>
+            <div class="headline">Capture the lesson without taking notes.</div>
+            <div class="supporting">After the lesson, Squirreled Away will suggest progress, difficulties, homework, and details worth adding to Sarah's memory.</div>
+            <div class="info-box" style="margin-bottom:16px;">Make sure everyone present knows the lesson is being recorded.</div>
+
+            <div class="radio-row"><div class="radio selected"></div>Record audio and create a lesson summary</div>
+            <div class="radio-row"><div class="radio selected"></div>Keep audio until the summary is reviewed</div>
+            <div class="radio-row"><div class="radio selected"></div>Delete audio after processing</div>
+            <div class="link-action">Recording settings</div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">● Start recording</div>
+            <div class="btn-secondary">Continue without recording</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Explicit consent before recording; explains what it's used for.</div>
+          <div class="arow"><b>Primary action:</b> "Start recording" <span class="tag">→ 13</span></div>
+          <div class="arow">Dot beside the button label is a microphone icon placeholder.</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 13 -->
+      <div class="frame-wrap">
+        <div class="frame-title">13 <span>· Active Lesson Recording</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>4:18 PM</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="content center" style="padding-top:10px;">
+            <div class="supporting" style="margin-bottom:4px;">Recording Sarah's lesson</div>
+            <div class="timer-big">18:42</div>
+            <div class="waveform">
+              <div class="bar" style="height:14px;"></div><div class="bar" style="height:26px;"></div><div class="bar" style="height:10px;"></div><div class="bar" style="height:34px;"></div><div class="bar" style="height:18px;"></div><div class="bar" style="height:30px;"></div><div class="bar" style="height:12px;"></div><div class="bar" style="height:22px;"></div><div class="bar" style="height:16px;"></div>
+            </div>
+            <div class="supporting" style="margin-bottom:20px;">Listening for lesson details</div>
+
+            <div class="card" style="width:100%;">
+              <div class="card-label">Today's focus</div>
+              <div class="card-text">Multi-step word problems</div>
+            </div>
+            <div class="link-action">View teaching reminders</div>
+            <ul class="list-plain" style="width:100%;text-align:left;margin-top:8px;">
+              <li>Use diagrams</li>
+              <li>Ask Sarah to explain each step</li>
+              <li>Check homework problems 4–8</li>
+            </ul>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-row">
+              <div class="btn-outline">⏸ Pause</div>
+              <div class="btn-outline">Add quick marker</div>
+            </div>
+            <div class="btn-primary" style="background:#444;">End lesson</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Extremely simple, low-distraction interface during teaching. No live transcript or AI suggestions shown.</div>
+          <div class="arow"><b>Primary action:</b> "End lesson" <span class="tag">→ 14</span></div>
+          <div class="arow">"Add quick marker" shows a temporary toast: "Moment marked for review."</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 14 -->
+      <div class="frame-wrap">
+        <div class="frame-title">14 <span>· Processing Lesson</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="content center" style="justify-content:center;flex:1;">
+            <div class="icon-circle" style="width:48px;height:48px;border-style:dashed;margin-bottom:18px;"></div>
+            <div class="headline">Organizing Sarah's lesson…</div>
+            <div class="supporting">We're identifying progress, challenges, homework, and details that may be useful next time.</div>
+            <div style="width:100%;text-align:left;">
+              <div class="step-row"><div class="step-num">✓</div>Creating lesson summary — <b>complete</b></div>
+              <div class="step-row"><div class="step-num" style="background:#000;color:#fff;">●</div>Detecting learning progress — <b>active</b></div>
+              <div class="step-row" style="color:#999;"><div class="step-num" style="border-color:#ccc;"> </div>Finding homework and next steps — waiting</div>
+              <div class="step-row" style="color:#999;"><div class="step-num" style="border-color:#ccc;"> </div>Checking for memory updates — waiting</div>
+            </div>
+            <div class="info-box">Nothing will be added to Sarah's memory until you review it.</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Shows the recording is being converted into structured memory.</div>
+          <div class="arow"><b>Automatic transition:</b> after processing completes <span class="tag">→ 15</span> (no button).</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 15 -->
+      <div class="frame-wrap">
+        <div class="frame-title">15 <span>· Review Lesson Details</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="top-header">
+            <div class="icon-btn">←</div>
+            <div class="title">Review lesson</div>
+            <div style="width:26px;"></div>
+          </div>
+          <div class="content">
+            <div class="source-row" style="margin-bottom:6px;">Sarah Kim · Today</div>
+            <div class="headline">Here's what we heard.</div>
+            <div class="supporting">Select what should be saved. Correct anything we misunderstood.</div>
+
+            <div class="section-label">Lesson summary</div>
+            <div class="card">
+              <div class="card-text">Sarah practiced translating multi-step word problems into equations. She improved after using a diagram to separate known and unknown values.</div>
+              <div class="link-action" style="margin-top:6px;display:inline-block;">Edit</div>
+            </div>
+
+            <div class="section-label">Suggested memory updates</div>
+            <div class="detect-card">
+              <div class="checkbox checked">✓</div>
+              <div class="grow">
+                <div class="card-label">Progress</div>
+                <div class="card-text">Can identify relevant values in word problems with less prompting.</div>
+                <div class="source-row">Lesson recording · 24:16</div>
+                <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Remove</div></div>
+              </div>
+            </div>
+            <div class="detect-card">
+              <div class="checkbox checked">✓</div>
+              <div class="grow">
+                <div class="card-label">Current challenge</div>
+                <div class="card-text">Still skips the final answer check when working independently.</div>
+                <div class="source-row">Lesson recording · 38:42</div>
+                <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Remove</div></div>
+              </div>
+            </div>
+            <div class="detect-card">
+              <div class="checkbox checked">✓</div>
+              <div class="grow">
+                <div class="card-label">Helpful teaching approach</div>
+                <div class="card-text">Drawing a diagram before writing the equation improved accuracy.</div>
+                <div class="source-row">Observed twice in this lesson</div>
+                <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Remove</div></div>
+              </div>
+            </div>
+            <div class="detect-card">
+              <div class="checkbox checked">✓</div>
+              <div class="grow">
+                <div class="card-label">Homework</div>
+                <div class="card-text">Complete word-problem worksheet, questions 1–5.</div>
+                <div class="source-row">Lesson recording · 54:08</div>
+                <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Remove</div></div>
+              </div>
+            </div>
+
+            <div class="section-label">Needs your confirmation</div>
+            <div class="detect-card dim">
+              <div class="checkbox unchecked">✓</div>
+              <div class="grow">
+                <div class="card-text">Sarah may feel more confident with word problems now.</div>
+                <div class="source-row">Inferred from Sarah saying, "This makes more sense now."</div>
+                <div class="row-actions"><div class="link-action">Save as observation</div><div class="link-action muted">Don't save</div><div class="link-action muted">Not sure</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Save 4 updates</div>
+            <div class="btn-secondary">Discard lesson summary</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Core "review, don't enter" interaction for lesson recordings.</div>
+          <div class="arow"><b>Primary action:</b> "Save 4 updates" <span class="tag">→ 16</span></div>
+          <div class="arow">4 items pre-selected; the uncertain observation is unselected by default.</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 16 -->
+      <div class="frame-wrap">
+        <div class="frame-title">16 <span>· Lesson Memory Updated</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="content">
+            <div class="content center" style="padding-top:16px;">
+              <div class="icon-circle" style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;border-color:#000;margin-bottom:14px;">✓</div>
+              <div class="headline">Sarah's memory is updated.</div>
+              <div class="supporting">We saved the lesson summary and added four reviewed details.</div>
+            </div>
+
+            <div class="section-label">Added today</div>
+            <div class="card">
+              <ul class="list-plain">
+                <li>Progress: Identifies relevant values with less prompting</li>
+                <li>Challenge: Skips the final answer check</li>
+                <li>Helpful approach: Draw a diagram before writing the equation</li>
+                <li>Homework: Worksheet questions 1–5</li>
+              </ul>
+            </div>
+
+            <div class="info-box" style="margin-bottom:10px;">Sarah's parent requested a short progress update after each lesson.</div>
+            <div class="link-action">Draft parent update</div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">View updated memory</div>
+            <div class="btn-secondary">Back to Today</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Confirm what changed and close the recording loop.</div>
+          <div class="arow"><b>Primary action:</b> "View updated memory" <span class="tag">→ 11 (updated state)</span></div>
+          <div class="arow">"Draft parent update" is a stub — not built in this prototype.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ ROW 4 ============================================================ -->
+  <div class="row">
+    <div class="row-label">Row 4 — Manual Information Capture &amp; Updated Memory (Screens 17–21)</div>
+    <div class="row-frames">
+
+      <!-- SCREEN 17 -->
+      <div class="frame-wrap">
+        <div class="frame-title">17 <span>· Add Information Menu</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="top-header">
+            <div class="icon-btn">←</div>
+            <div class="title">Student Memory</div>
+            <div class="icon-btn">⋯</div>
+          </div>
+          <div class="content" style="opacity:.35;">
+            <div class="card-title-row">
+              <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+              <div><div class="name">Sarah Kim</div><div class="meta">Algebra</div></div>
+            </div>
+            <div class="card"><div class="card-label">What to remember today</div><div class="card-text">Use diagrams for new material…</div></div>
+            <div class="card"><div class="card-label">Current learning</div></div>
+          </div>
+          <div class="sheet-backdrop"></div>
+          <div class="sheet-frame">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">Add something about Sarah</div>
+            <div class="supporting" style="margin-bottom:10px;">We'll organize it and show you what may change.</div>
+            <div class="option-row highlight"><div class="icon-circle"></div>Paste a parent message</div>
+            <div class="option-row"><div class="icon-circle"></div>Share a message or screenshot</div>
+            <div class="option-row"><div class="icon-circle"></div>Paste text</div>
+            <div class="option-row"><div class="icon-circle"></div>Write a quick note</div>
+            <div class="option-row"><div class="icon-circle"></div>Upload a file</div>
+            <div class="option-row"><div class="icon-circle"></div>Record a voice note</div>
+            <div class="source-row" style="margin-top:8px;">You'll review detected details before they are saved.</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Quickly capture information from outside a recorded lesson.</div>
+          <div class="arow"><b>Bottom sheet</b> over Sarah's Student Memory (background dimmed).</div>
+          <div class="arow"><b>Primary action:</b> "Paste a parent message" (highlighted) <span class="tag">→ 18</span></div>
+        </div>
+      </div>
+
+      <!-- SCREEN 18 -->
+      <div class="frame-wrap">
+        <div class="frame-title">18 <span>· Paste Parent Message</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="top-header">
+            <div class="icon-btn">✕</div>
+            <div class="title">Add information</div>
+            <div style="width:26px;"></div>
+          </div>
+          <div class="content">
+            <div class="section-label" style="margin-top:0;">Adding to: Sarah Kim</div>
+            <div class="card-label" style="margin-top:10px;">Paste message</div>
+            <textarea class="fake" readonly>Hi Mina, Sarah's test was moved to October 18. Could you focus more on word problems over the next two weeks? Thank you!</textarea>
+
+            <div class="section-label">Source</div>
+            <div class="radio-row"><div class="radio selected"></div>Parent message</div>
+            <div class="radio-row"><div class="radio"></div>Personal note</div>
+            <div class="radio-row"><div class="radio"></div>Other</div>
+
+            <div class="info-box">Only the information you confirm will be added to Sarah's memory.</div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Find important details</div>
+            <div class="btn-secondary">Cancel</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Capture unstructured information with minimal effort.</div>
+          <div class="arow"><b>Primary action:</b> "Find important details" <span class="tag">→ 19</span></div>
+          <div class="arow">Text field is prefilled with the parent's message for this walkthrough.</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 19 -->
+      <div class="frame-wrap">
+        <div class="frame-title">19 <span>· Review Detected Information</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="top-header">
+            <div class="icon-btn">←</div>
+            <div class="title">Review details</div>
+            <div style="width:26px;"></div>
+          </div>
+          <div class="content">
+            <div class="card">
+              <div class="card-label">Original parent message</div>
+              <div class="card-text">Hi Mina, Sarah's test was moved to October 18. Could you focus more on word problems over the next two weeks? Thank you!</div>
+              <div class="source-row">Matched to Sarah Kim</div>
+            </div>
+
+            <div class="headline" style="font-size:18px;">We found 3 details.</div>
+            <div class="supporting">Review what should be added or changed.</div>
+
+            <div class="detect-card">
+              <div class="checkbox checked">✓</div>
+              <div class="grow">
+                <div class="detect-row-top"><div class="card-label">Exam date</div><span class="badge">Updates existing information</span></div>
+                <div class="card-text">October 15 → October 18</div>
+                <div class="source-row">Suggested location: Current learning</div>
+                <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Don't save</div></div>
+              </div>
+            </div>
+            <div class="detect-card">
+              <div class="checkbox checked">✓</div>
+              <div class="grow">
+                <div class="detect-row-top"><div class="card-label">Current priority</div><span class="badge outline">New</span></div>
+                <div class="card-text">Focus more on word problems</div>
+                <div class="source-row">Suggested location: Parent context</div>
+                <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Don't save</div></div>
+              </div>
+            </div>
+            <div class="detect-card">
+              <div class="checkbox checked">✓</div>
+              <div class="grow">
+                <div class="detect-row-top"><div class="card-label">Time-sensitive instruction</div><span class="badge gray">Temporary</span></div>
+                <div class="card-text">For the next two weeks</div>
+                <div class="source-row">Show in "What to remember today" until October 18</div>
+                <div class="row-actions"><div class="link-action">Correct</div><div class="link-action muted">Don't save</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">Update Sarah's memory</div>
+            <div class="btn-secondary">Cancel</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Demonstrate the core "review, don't enter" interaction for any pasted text.</div>
+          <div class="arow"><b>Primary action:</b> "Update Sarah's memory" <span class="tag">→ 20</span></div>
+          <div class="arow">Badges distinguish an update to existing info, a new detail, and a temporary/time-boxed one.</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 20 -->
+      <div class="frame-wrap">
+        <div class="frame-title">20 <span>· Manual Memory Update Success</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="content">
+            <div class="content center" style="padding-top:16px;">
+              <div class="acorn lg" style="margin-bottom:12px;"><div class="cap"></div><div class="body"></div></div>
+              <div class="headline">Sarah's memory is up to date.</div>
+              <div class="supporting">We added the parent's request and updated Sarah's exam date.</div>
+            </div>
+
+            <div class="section-label">What changed</div>
+            <div class="card">
+              <ul class="list-plain">
+                <li>Exam date changed from October 15 to October 18</li>
+                <li>Word problems added as the current priority</li>
+                <li>Temporary instruction active for the next two weeks</li>
+              </ul>
+            </div>
+
+            <div class="section-label">What to remember today</div>
+            <div class="card" style="border-width:2px;">
+              <div class="card-text">Sarah's exam is now October 18. Prioritize word problems over the next two weeks.</div>
+            </div>
+          </div>
+          <div class="sticky-bottom">
+            <div class="btn-primary">View updated memory</div>
+            <div class="btn-secondary">Back to Today</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Confirm the manual update and show exactly what changed.</div>
+          <div class="arow"><b>Primary action:</b> "View updated memory" <span class="tag">→ 21</span></div>
+        </div>
+      </div>
+
+      <!-- SCREEN 21 -->
+      <div class="frame-wrap">
+        <div class="frame-title">21 <span>· Updated Sarah Student Memory</span></div>
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+          <div class="top-header">
+            <div class="icon-btn">←</div>
+            <div class="title">Student Memory</div>
+            <div class="icon-btn">⋯</div>
+          </div>
+          <div class="banner">Memory updated from a parent message.</div>
+          <div class="content">
+            <div class="card-title-row" style="margin-top:10px;">
+              <div class="acorn"><div class="cap"></div><div class="body"></div></div>
+              <div><div class="name">Sarah Kim</div><div class="meta">Algebra · Tuesdays and Thursdays · 4:00 PM</div></div>
+            </div>
+            <div class="source-row" style="margin-bottom:10px;">Next lesson: Today</div>
+
+            <div class="card" style="border-width:2px;">
+              <div class="card-label">What to remember today</div>
+              <div class="card-text">Sarah's exam is October 18. Prioritize word problems over the next two weeks. Use diagrams and ask her to explain each step aloud.</div>
+            </div>
+
+            <div class="section-label">1. Current learning</div>
+            <div class="card">
+              <ul class="list-plain">
+                <li>Goal: Build confidence before the October exam</li>
+                <li>Current priority: Multi-step word problems</li>
+                <li>Exam date: October 18</li>
+                <li>Homework: Word-problem worksheet, questions 1–5</li>
+              </ul>
+            </div>
+
+            <div class="section-label">4. Recent lesson memory</div>
+            <div class="card">
+              <div class="card-text" style="font-weight:700;">Today · Multi-step word problems</div>
+              <ul class="list-plain">
+                <li>Identified relevant values with less prompting</li>
+                <li>Still skipped the final answer check</li>
+                <li>Diagrams improved accuracy</li>
+                <li>Homework assigned: Questions 1–5</li>
+              </ul>
+            </div>
+
+            <div class="section-label">3. Parent context</div>
+            <div class="card">
+              <ul class="list-plain">
+                <li>Focus more on word problems until October 18</li>
+                <li>Send a short progress update after each lesson</li>
+              </ul>
+            </div>
+
+            <div class="section-label">5. Sources</div>
+            <div class="card" style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="badge outline">Google Calendar</span><span class="badge outline">Parent message</span><span class="badge outline">Lesson note</span><span class="badge outline">Lesson recording</span>
+            </div>
+          </div>
+          <div class="bottom-nav">
+            <div class="nav-item"><div class="nav-icon"></div>Today</div>
+            <div class="nav-item active"><div class="nav-icon"></div>Students</div>
+            <div class="nav-item"><div class="nav-icon"></div>Add</div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="arow"><b>Purpose:</b> Close the story — the same memory screen, now reflecting both the lesson recording and the parent message.</div>
+          <div class="arow">Same layout as Screen 11 for continuity; confirmation banner at top signals the source of the latest change.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
